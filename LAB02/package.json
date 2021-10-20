@@ -1,0 +1,15 @@
+{
+  "name": "lab02",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "lab2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "surokraci",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.1.1"
+  }
+}
