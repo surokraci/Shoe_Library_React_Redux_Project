@@ -6,13 +6,14 @@ import { addToDo } from "../actions/TodoAction";
 
 
 const ToDoForm = (props) => {
-    useEffect(()=>{
-        console.log(props.users);
-
-    }, [props])
+    
 
     const handleSubmit = (values) =>{
         props.addToDo(values)
+    }
+
+    const uuid =()=>{
+        return uuidv4()
     }
 
     return (
@@ -29,7 +30,7 @@ const ToDoForm = (props) => {
                 enableReinitialize={true}>
                     <Form>
                         <Field name="name"/>
-                        <Field date="date"/>
+                        <Field name="date"/>
                         <button type="submit">
                             Zatwierdz
                         </button>
