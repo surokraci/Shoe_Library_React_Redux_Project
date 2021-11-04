@@ -1,42 +1,44 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useEffect } from "react";
-import { addMovieAction } from "../actions/MovieAction";
+import { editDirectorAction } from "../actions/DirectorAction";
 import { connect } from 'react-redux';
-import {v4 as uuidv4 } from 'uuid';
 import { withRouter } from "react-router";
 import * as Yup from 'yup';
 
 const DirectorSchema = Yup.object().shape({
-    title: Yup.string()
+    firstname: Yup.string()
+    .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    productionYear: Yup.date()
+    lastname: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
     .required('Required'),
-    
+    age: Yup.number().required('Required')
 
 })
 
-const MovieForm = ({ history, addMovieAction },props) => {
+
+const DirectorForm = ({ history, editDirectorAction, director },props) => {
     useEffect(()=>{
-        console.log(props.movies)
+        console.log(props.directors)
     }, [props])
 
     const handleSubmit = (values) => {
-        console.log("dodano film!");
-        addMovieAction(values);
-        history.push('/movies')
+        editDirectorAction(values);
+        history.push(`/directors/${director.id}`)
         
     }
 
     return (
         <div>
-            <h3>Add Movie</h3>
+            <h3>Add Director</h3>
             <Formik
                 initialValues={{
-                    id: uuidv4(),
-                    title: '',
-                    productionYear: '',
-                    director: '',
+                    id: director.id,
+                    firstname: director.firstname,
+                    lastname: director.lastname,
+                    age: director.age,
                 }}
                 validationSchema={DirectorSchema}
                 onSubmit={(values) => handleSubmit(values)}
@@ -49,7 +51,7 @@ const MovieForm = ({ history, addMovieAction },props) => {
                      {touched.firstname && errors.firstname && <div>{errors.firstname}</div>}
                      <Field name="lastname" />
                      {touched.lastname && errors.lastname && <div>{errors.lastname}</div>}
-                     <Field name="age" type="number" min="10" max="120"/>
+                     <Field name="age" type="number" />
                      {touched.age && errors.age && <div>{errors.age}</div>}
                      
                      <button type="submit">
@@ -63,15 +65,13 @@ const MovieForm = ({ history, addMovieAction },props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        movies: state.movies
-    }
-};
+const mapStateToProps = (state, props) => ({
+    director: state.directors.find(director => director.id === props.match.params.id)
+});
 
 const mapDispatchToProps = {
-    addMovieAction
+    editDirectorAction
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DirectorForm));

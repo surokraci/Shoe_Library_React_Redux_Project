@@ -1,42 +1,46 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useEffect } from "react";
-import { addMovieAction } from "../actions/MovieAction";
+import { addDirectorAction } from "../actions/DirectorAction";
 import { connect } from 'react-redux';
 import {v4 as uuidv4 } from 'uuid';
 import { withRouter } from "react-router";
 import * as Yup from 'yup';
 
 const DirectorSchema = Yup.object().shape({
-    title: Yup.string()
+    firstname: Yup.string()
+    .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    productionYear: Yup.date()
+    lastname: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
     .required('Required'),
-    
+    age: Yup.number().required('Required')
 
 })
 
-const MovieForm = ({ history, addMovieAction },props) => {
+
+const DirectorForm = ({ history, addDirectorAction },props) => {
     useEffect(()=>{
-        console.log(props.movies)
+        console.log(props.directors)
     }, [props])
 
     const handleSubmit = (values) => {
-        console.log("dodano film!");
-        addMovieAction(values);
-        history.push('/movies')
+        console.log("dodano rezysera");
+        addDirectorAction(values);
+        history.push('/directors')
         
     }
 
     return (
         <div>
-            <h3>Add Movie</h3>
+            <h3>Add Director</h3>
             <Formik
                 initialValues={{
                     id: uuidv4(),
-                    title: '',
-                    productionYear: '',
-                    director: '',
+                    firstname: '',
+                    lastname: '',
+                    age: '',
                 }}
                 validationSchema={DirectorSchema}
                 onSubmit={(values) => handleSubmit(values)}
@@ -65,13 +69,13 @@ const MovieForm = ({ history, addMovieAction },props) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies
+        directors: state.directors
     }
 };
 
 const mapDispatchToProps = {
-    addMovieAction
+    addDirectorAction
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MovieForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DirectorForm));
