@@ -10,6 +10,9 @@ import DirectorDetail from "./directors/DirectorDetail";
 import DirectorEditForm from "./directors/DirectorEditForm";
 import DirectorForm from "./directors/DirectorForm";
 import DirectorList from "./directors/DirectorList";
+import MovieDetail from "./movies/MovieDetail";
+import MovieForm from "./movies/MovieForm";
+import MovieList from "./movies/MovieList"
 
 
 function App() {
@@ -27,6 +30,12 @@ function App() {
             <li>
               <Link to="/directors">Directors</Link>
             </li>
+            <li>
+              <Link to="/movies/add">Add movie</Link>
+            </li>
+            <li>
+              <Link to="/movies">Movies</Link>
+            </li>
             
           </ul>
         </nav>
@@ -38,6 +47,15 @@ function App() {
           
           <Route path="/directors/add">
             <DirectorForm />
+          </Route>
+          <Route path="/movies/add">
+            <MovieForm />
+          </Route>
+          <Route exact path="/movies/:id">
+            <MovieDetail />
+          </Route>
+          <Route path="/movies">
+            <MovieList />
           </Route>
           <Route path="/directors/:id/edit">
             <DirectorEditForm />

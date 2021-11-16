@@ -12,13 +12,16 @@ const DirectorSchema = Yup.object().shape({
     .required('Required'),
     productionYear: Yup.date()
     .required('Required'),
+    director: Yup.string()
+    .required('Required')
     
 
 })
 
-const MovieForm = ({ history, addMovieAction },props) => {
+const MovieForm = ({ history, addMovieAction, directors, movies},props) => {
     useEffect(()=>{
-        console.log(props.movies)
+        console.log(movies)
+        console.log(directors);
     }, [props])
 
     const handleSubmit = (values) => {
@@ -45,12 +48,20 @@ const MovieForm = ({ history, addMovieAction },props) => {
                 enableReinitialize={true}>
                  {({ errors, touched }) =>(
                      <Form>
-                     <Field name="firstname" />
-                     {touched.firstname && errors.firstname && <div>{errors.firstname}</div>}
-                     <Field name="lastname" />
-                     {touched.lastname && errors.lastname && <div>{errors.lastname}</div>}
-                     <Field name="age" type="number" min="10" max="120"/>
-                     {touched.age && errors.age && <div>{errors.age}</div>}
+                     <Field name="title" />
+                     {touched.title && errors.title && <div>{errors.title}</div>}
+                     <Field name="productionYear" />
+                     {touched.productionYear && errors.productionYear && <div>{errors.productionYear}</div>}
+                     <Field  name="director" as="select">
+                        <option selected="true"> Brak reżysera </option>  
+                        {directors.map(director => 
+                            <option value={director.id}>
+                                {`${director.firstname} ${director.lastname}`}
+                            </option>
+                        )}
+                        
+                     </Field>
+                     {touched.director && errors.director && <div>{errors.director}</div>}
                      
                      <button type="submit">
                          Zatwierdz
@@ -65,7 +76,8 @@ const MovieForm = ({ history, addMovieAction },props) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies
+        movies: state.movies,
+        directors: state.directors
     }
 };
 

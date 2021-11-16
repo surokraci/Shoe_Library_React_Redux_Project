@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { directorReducer } from './reducers/DirectorReducer';
+import { movieReducer } from './reducers/MovieReducer';
 
 let store = createStore(
   combineReducers(
     { 
-      directors: directorReducer
+      directors: directorReducer,
+      movies: movieReducer
     }
   ))
 

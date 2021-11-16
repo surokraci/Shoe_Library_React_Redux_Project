@@ -3,6 +3,6 @@ export const addMovieAction = (payload) =>({
     payload
 })
 export const deleteMovieAction = (payload) =>({
-    type: 'DELETE_MOVIE',
+    type: 'MOVIE_DELETE',
     payload
 })

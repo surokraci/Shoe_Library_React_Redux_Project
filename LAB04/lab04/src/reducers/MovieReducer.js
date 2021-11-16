@@ -3,7 +3,7 @@ export const movieReducer =(state =[], action)=>{
         case 'MOVIE_ADD':
             return [...state, action.payload];
         case 'MOVIE_DELETE':
-            return [...state.filter(movie=>movie.id !== action.payload.id)]
+            return [...state.filter(el => el.id !== action.payload.id)];
         default:
             return state;
 
