@@ -49,9 +49,9 @@ const MovieForm = ({ history, addMovieAction, directors, movies},props) => {
                 enableReinitialize={true}>
                  {({ errors, touched }) =>(
                      <Form>
-                     <Field name="title" />
+                     <Field name="title" placeholder="Title"/>
                      {touched.title && errors.title && <div>{errors.title}</div>}
-                     <Field name="productionYear" />
+                     <Field name="productionYear" placeholder="Production Date"/>
                      {touched.productionYear && errors.productionYear && <div>{errors.productionYear}</div>}
                      <Field  name="director" as="select">
                         <option selected="true"> Brak reżysera </option>  

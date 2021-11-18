@@ -49,11 +49,11 @@ const DirectorForm = ({ history, addDirectorAction, directors },props) => {
                 enableReinitialize={true}>
                  {({ errors, touched }) =>(
                      <Form>
-                     <Field name="firstname" />
+                     <Field name="firstname" placeholder="First name"/>
                      {touched.firstname && errors.firstname && <div>{errors.firstname}</div>}
-                     <Field name="lastname" />
+                     <Field name="lastname" placeholder="Last name"/>
                      {touched.lastname && errors.lastname && <div>{errors.lastname}</div>}
-                     <Field name="age" type="number" min="10" max="120"/>
+                     <Field name="age" type="number" placeholder="age" min="10" max="120"/>
                      {touched.age && errors.age && <div>{errors.age}</div>}
                      
                      <button type="submit">

@@ -48,11 +48,11 @@ const ActorForm = ({ history, addActorAction, actors},props) => {
                 enableReinitialize={true}>
                  {({ errors, touched }) =>(
                      <Form>
-                     <Field name="firstname" />
+                     <Field name="firstname" placeholder="First Name"/>
                      {touched.firstname && errors.firstname && <div>{errors.firstname}</div>}
-                     <Field name="lastname" />
+                     <Field name="lastname" placeholder="Last Name"/>
                      {touched.lastname && errors.lastname && <div>{errors.lastname}</div>}
-                     <Field name="age" type="number" min="10" max="120"/>
+                     <Field name="age" type="number" placeholder="age" min="10" max="120"/>
                      {touched.age && errors.age && <div>{errors.age}</div>}
                      
                      <button type="submit">
