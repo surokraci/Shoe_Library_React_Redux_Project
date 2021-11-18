@@ -40,6 +40,7 @@ const MovieForm = ({ history, addMovieAction, directors, movies},props) => {
                     title: '',
                     productionYear: '',
                     director: '',
+                    actors: []
                 }}
                 validationSchema={DirectorSchema}
                 onSubmit={(values) => handleSubmit(values)}

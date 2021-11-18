@@ -4,12 +4,16 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import ActorDetail from "./actors/ActorDetail";
+import ActorForm from "./actors/ActorForm";
+import ActorList from "./actors/ActorList";
 import './App.css';
 import Home from './core/Dashboard';
 import DirectorDetail from "./directors/DirectorDetail";
 import DirectorEditForm from "./directors/DirectorEditForm";
 import DirectorForm from "./directors/DirectorForm";
 import DirectorList from "./directors/DirectorList";
+import MovieAddActor from "./movies/MovieAddActor";
 import MovieDetail from "./movies/MovieDetail";
 import MovieForm from "./movies/MovieForm";
 import MovieList from "./movies/MovieList"
@@ -36,6 +40,12 @@ function App() {
             <li>
               <Link to="/movies">Movies</Link>
             </li>
+            <li>
+              <Link to="/actors/add">Add actor</Link>
+            </li>
+            <li>
+              <Link to="/actors">Actors</Link>
+            </li>
             
           </ul>
         </nav>
@@ -50,6 +60,12 @@ function App() {
           </Route>
           <Route path="/movies/add">
             <MovieForm />
+          </Route>
+          <Route path="/actors/add">
+            <ActorForm />
+          </Route>
+          <Route path="/movies/:id/addActor">
+            <MovieAddActor />
           </Route>
           <Route exact path="/movies/:id">
             <MovieDetail />
@@ -67,6 +83,14 @@ function App() {
           
           <Route path="/directors">
             <DirectorList />
+          </Route>
+
+          <Route exact path="/actors/:id">
+            <ActorDetail />
+          </Route>
+          
+          <Route path="/actors">
+            <ActorList />
           </Route>
           <Route path="/">
             <Home />

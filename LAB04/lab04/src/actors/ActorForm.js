@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useEffect } from "react";
-import { addDirectorAction } from "../actions/DirectorAction";
+import { addActorAction } from "../actions/ActorActions";
 import { connect } from 'react-redux';
 import {v4 as uuidv4 } from 'uuid';
 import { withRouter } from "react-router";
@@ -16,31 +16,30 @@ const DirectorSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
     age: Yup.number().required('Required')
-
 })
 
-
-const DirectorForm = ({ history, addDirectorAction, directors },props) => {
+const ActorForm = ({ history, addActorAction, actors},props) => {
     useEffect(()=>{
-        console.log(directors)
+        console.log(actors)
     }, [props])
 
     const handleSubmit = (values) => {
-        console.log("dodano rezysera");
-        addDirectorAction(values);
-        history.push('/directors')
+        console.log("dodano aktora!");
+        addActorAction(values);
+        history.push('/actors')
         
     }
 
     return (
         <div>
-            <h3>Add Director</h3>
+            <h3>Add Actor</h3>
             <Formik
                 initialValues={{
                     id: uuidv4(),
                     firstname: '',
                     lastname: '',
                     age: '',
+                    movies: []
                 }}
                 validationSchema={DirectorSchema}
                 onSubmit={(values) => handleSubmit(values)}
@@ -69,13 +68,13 @@ const DirectorForm = ({ history, addDirectorAction, directors },props) => {
 
 const mapStateToProps = (state) => {
     return {
-        directors: state.directors
+        actors: state.actors
     }
 };
 
 const mapDispatchToProps = {
-    addDirectorAction
+    addActorAction
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DirectorForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ActorForm));
