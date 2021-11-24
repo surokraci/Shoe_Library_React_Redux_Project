@@ -4,27 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { counterReducer } from './reducers/CounterReducer';
 import { Provider } from 'react-redux';
-import { directorReducer } from './reducers/DirectorReducer';
-import { movieReducer } from './reducers/MovieReducer';
-import { actorReducer } from './reducers/ActorReducer';
-import logger from './middlewares/Logger';
+import Counterlogger from './middlewares/CounterMIddleware';
 
 let store = createStore(
   combineReducers(
-    { 
-      actors: actorReducer,
-      directors: directorReducer,
-      movies: movieReducer
-    }
-  ), applyMiddleware(logger));
+    {cnt: counterReducer}
+  ), applyMiddleware(Counterlogger)
+)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
-    </Provider>
-    
+    <App />
+    </ Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
