@@ -3,8 +3,11 @@ import { incrementCounter } from "../actions/CounterActions";
 import { decrementCounter } from "../actions/CounterActions";
 import { startCountdown } from "../actions/CounterActions";
 import { stopCountdown } from "../actions/CounterActions";
+import React, { useState } from "react";
 
 const Counter = ({cnt, incrementCounter, decrementCounter, startCountdown, stopCountdown}, props) =>{
+
+    const [showResults, setShowResults] = React.useState(false)
 
     const handleIncrease = () => {
         incrementCounter();
@@ -16,10 +19,12 @@ const Counter = ({cnt, incrementCounter, decrementCounter, startCountdown, stopC
     }
     const handleCountdown = () => {
         startCountdown();
+        setShowResults(true)
         
     }
     const handleStopCountdown = () => {
         stopCountdown();
+        setShowResults(false)
         
     }
 
@@ -31,8 +36,9 @@ const Counter = ({cnt, incrementCounter, decrementCounter, startCountdown, stopC
             <button onClick={handleIncrease}>+</button>
             <button onClick={handleDecrease}>-</button>
             <div>
-                <button onClick={handleCountdown}>Odliczaj</button>
-                <button onClick={handleStopCountdown}>Zatrzymaj</button>
+                { showResults ? <button onClick={handleStopCountdown}>Zatrzymaj</button> : <button onClick={handleCountdown}>Odliczaj</button>}
+                
+                
             </div>
         </div>
     )
