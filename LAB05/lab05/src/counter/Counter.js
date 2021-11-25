@@ -15,6 +15,9 @@ const Counter = ({cnt, incrementCounter, decrementCounter}, props) =>{
 
     return (
         <div>
+            <h1>
+            {cnt.cnt}
+            </h1>
             <button onClick={handleIncrease}>+</button>
             <button onClick={handleDecrease}>-</button>
         </div>
