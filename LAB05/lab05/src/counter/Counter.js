@@ -1,16 +1,26 @@
 import { connect } from "react-redux";
 import { incrementCounter } from "../actions/CounterActions";
 import { decrementCounter } from "../actions/CounterActions";
+import { startCountdown } from "../actions/CounterActions";
+import { stopCountdown } from "../actions/CounterActions";
 
-const Counter = ({cnt, incrementCounter, decrementCounter}, props) =>{
+const Counter = ({cnt, incrementCounter, decrementCounter, startCountdown, stopCountdown}, props) =>{
 
     const handleIncrease = () => {
         incrementCounter();
-        console.log(cnt);
+        
     }
     const handleDecrease = () => {
         decrementCounter();
-        console.log(cnt);
+        
+    }
+    const handleCountdown = () => {
+        startCountdown();
+        
+    }
+    const handleStopCountdown = () => {
+        stopCountdown();
+        
     }
 
     return (
@@ -20,6 +30,10 @@ const Counter = ({cnt, incrementCounter, decrementCounter}, props) =>{
             </h1>
             <button onClick={handleIncrease}>+</button>
             <button onClick={handleDecrease}>-</button>
+            <div>
+                <button onClick={handleCountdown}>Odliczaj</button>
+                <button onClick={handleStopCountdown}>Zatrzymaj</button>
+            </div>
         </div>
     )
 
@@ -33,7 +47,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     incrementCounter,
-    decrementCounter
+    decrementCounter,
+    startCountdown,
+    stopCountdown
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)

@@ -6,6 +6,10 @@ export const counterReducer = (state=initialState, action) => {
             return {cnt: state.cnt+1};
         case 'COUNTER_MINUS':
             return {cnt: state.cnt-1};
+        case 'START_COUNTDOWN':
+            return {cnt: state.cnt-1};
+        case 'STOP_COUNTDOWN':
+            return {cnt: state.cnt};
         default: 
             return state;
     }
