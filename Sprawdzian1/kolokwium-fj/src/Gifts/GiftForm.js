@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 const GiftForm = ({history, addGift, gifts}, props) => {
     const handleSubmit = (values) =>{
         addGift(values)
+        console.log(gifts);
         history.push('/')
     }
 

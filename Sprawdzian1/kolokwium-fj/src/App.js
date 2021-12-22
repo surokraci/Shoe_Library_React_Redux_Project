@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import GiftForm from './Gifts/GiftForm';
 import GiftList from './Gifts/GiftList.js';
+import GiftDetail from './Gifts/GiftDetail';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <GiftForm />
           </Route>
           <Route path="/gifts/:id">
-            <GiftForm />
+            <GiftDetail />
           </Route>
           <Route path="/">
             <GiftList/>
