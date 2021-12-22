@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { connect } from 'react-redux';
 import {v4 as uuidv4 } from 'uuid';
 import { addGift } from "../actions/GiftAction";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
 
 const GiftForm = ({addGift, gifts}, props) => {
@@ -48,4 +48,4 @@ const mapDispatchToProps = {
     addGift
 }
 
-export default connect(mapStateToProps, mapDispatchToProps,)(GiftForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps,)(GiftForm))

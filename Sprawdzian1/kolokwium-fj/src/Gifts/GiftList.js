@@ -22,7 +22,7 @@ const GiftList = ({ gifts, deleteGift } ,props) => {
                         <Link to={`gifts/${gift.name}`}>{gift.name}</Link>
                         <div>
                             <button onClick={() => 
-                                handleClick(product.id)}>Usuń</button>
+                                handleClick(gift.name)}>Usuń</button>
                         </div>
                     </div>)})
             }

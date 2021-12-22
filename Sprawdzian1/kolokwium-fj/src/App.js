@@ -6,9 +6,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { GiftForm }  from "./Gifts/GiftForm";
-import { GiftList } from "./Gifts/GiftList";
-
+import GiftForm from './Gifts/GiftForm';
+import GiftList from './Gifts/GiftList.js';
 
 function App() {
   return (
