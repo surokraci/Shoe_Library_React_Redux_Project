@@ -9,6 +9,12 @@ const GiftList = ({ gifts, deleteGift } ,props) => {
         deleteGift(values);
         
     }
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+    const names = gifts.map(x=>x.name).filter(onlyUnique);
+
+    
 
 
     return (
@@ -16,10 +22,10 @@ const GiftList = ({ gifts, deleteGift } ,props) => {
             <h3>Produkty</h3>
             
             {
-                gifts.map(gift => {
+                names.map(gift => {
                     return (
                     <div>
-                        <Link to={`gifts/${gift.name}`}>{gift.name}</Link>
+                        <Link to={`gifts/${gift}`}>{gift}</Link>
                         <div>
                             <button onClick={() => 
                                 handleClick(gift.name)}>Usuń</button>
