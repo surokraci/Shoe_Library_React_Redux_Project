@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getProductList } from "../actions/ProductAction";
 import { Link } from "react-router-dom";
 import { deleteGift } from "../actions/GiftAction";
 
@@ -50,4 +49,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps)(GiftList);
