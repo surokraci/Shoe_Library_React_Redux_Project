@@ -5,7 +5,9 @@ const Colorway = require('../models/Colorway');
 
 
 router.get('/', async (req, res) => {
-  Colorway.find(function(error, colorway){
+  Colorway.find()
+  .populate('shoes')
+  .exec(function(error, colorway){
     if(error){
       return res.send(error)
     }

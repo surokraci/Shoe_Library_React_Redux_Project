@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     console.log(colorwayX)
     const res =await Colorway.findByIdAndUpdate(colorwayX, {$addToSet:{shoes:newShoe._id}},{new: true},function(error, respo){
       if(error){
-        return res.send(error)
+        return res.send("error")
       }
     })
   }
@@ -40,7 +40,9 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  Shoe.findById(req.params.id, function(error, shoes){
+  Shoe.findById(req.params.id)
+  .populate('colorway')
+  .exec(function(error, shoes){
     if(error){
       return res.send(error)
     }

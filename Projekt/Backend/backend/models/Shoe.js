@@ -22,7 +22,8 @@ const shoeSchema = new Schema({
     },
     region: [String],
     pictureUrl: String,
-    auctions: [{type: Schema.Types.ObjectId, ref: 'Auction'}]
+    auctions: [{type: Schema.Types.ObjectId, ref: 'Auction'}],
+    releaseDate: Date
 
 });
 

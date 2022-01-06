@@ -1,0 +1,74 @@
+@import url(https://mcansh.github.io/yeezy-logo-font/assets/css/font.css);
+
+body {
+  margin: 0;
+  background-color: whitesmoke;
+  color: #3F3F3F;
+  font-family: 'Yeezy';
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  margin-left: 15%;
+
+  .homecore{
+    font-size: 400%
+  }
+
+  .sidebar {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 10%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: whitesmoke; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+  }
+
+  .shoeContainer{
+    margin: 20px;
+    border: thin solid black;
+    
+
+    .shoeSide{
+      border: thin solid black;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-content: flex-start;
+      .shoeSideInfo{
+        border: thin solid black;
+        margin-left: 0;
+      }
+      .shoeImageInfo{
+        border: thin solid black;
+        margin-right: 0;
+        padding-right: 0px;
+
+      
+      img{
+        width: 250px;
+      }
+    }
+    }
+    
+
+  }
+  
+
+  .colorName{
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+    font-size: 30px;
+  }
+  
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
