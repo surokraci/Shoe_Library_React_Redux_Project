@@ -23,3 +23,18 @@ export const ShoeDeleteOne = (shoe) => ({
     type: types.SHOE_DELETE,
     payload: shoe
 })
+
+export const AddShoeToColorway = (shoe) => ({
+    type: types.ADD_SHOE_TO_COLORWAY,
+    payload: shoe
+})
+
+export const DeleteShoeFromColorway = (shoe) =>({
+    type: types.REMOVE_SHOE_TO_COLORWAY,
+    payload: shoe
+})
+
+export const AuctionDeleteOne = (auction) => ({
+    type: types.AUCTION_DELETE,
+    payload: auction
+})

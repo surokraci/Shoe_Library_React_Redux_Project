@@ -23,3 +23,4 @@ export const ColorwayDeleteOne = (colorway) => ({
     type: types.COLORWAY_DELETE,
     payload: colorway
 })
+

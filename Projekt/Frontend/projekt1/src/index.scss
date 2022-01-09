@@ -29,17 +29,17 @@ body {
 
   .shoeContainer{
     margin: 20px;
-    border: thin solid black;
+    
     
 
     .shoeSide{
-      border: thin solid black;
+      
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-content: flex-start;
       .shoeSideInfo{
-        border: thin solid black;
+        
         margin-left: 0;
       }
       .shoeImageInfo{
@@ -50,6 +50,7 @@ body {
       
       img{
         width: 250px;
+        height: 170px;
       }
     }
     }

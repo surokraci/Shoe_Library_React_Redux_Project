@@ -8,11 +8,15 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import colorwayReducer from './ducks/colorways/reducers';
 import ShoeReducer from './ducks/shoes/reducers';
+import ShopReducer from './ducks/stores/reducers';
+import AuctionReducer from './ducks/auctions/reducers';
 
 const store = createStore(
   combineReducers({
     shoes: ShoeReducer,
-    colorways: colorwayReducer
+    colorways: colorwayReducer,
+    shops: ShopReducer,
+    auctions: AuctionReducer
   }), applyMiddleware(thunk)
 )
 

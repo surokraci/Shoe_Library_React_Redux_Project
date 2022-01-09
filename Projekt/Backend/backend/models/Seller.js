@@ -9,7 +9,9 @@ const sellerSchema = new Schema({
         type: String,
     },
     auctions: [{type: Schema.Types.ObjectId, ref: 'Auction'}],
-    url: String
+    url: String,
+    pictureUrl: String
+
 
 });
 

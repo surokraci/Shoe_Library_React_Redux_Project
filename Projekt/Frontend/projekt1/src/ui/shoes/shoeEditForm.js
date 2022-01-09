@@ -2,7 +2,7 @@ import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik"
 import { useEffect } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { addNewShoe } from "../../ducks/shoes/operations";
+import { editShoe } from "../../ducks/shoes/operations";
 import * as Yup from 'yup';
 import { getColorwaysList } from "../../ducks/colorways/operations";
 
@@ -33,7 +33,7 @@ const ShoeSchema = Yup.object().shape({
 })
 
 
-const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) => {
+const ShoeEditForm = ({ history, editShoe, colorways, getColorwaysList, shoe },props) => {
     useEffect(()=>{
         console.log(colorways)
         if(colorways.length == 0){
@@ -42,27 +42,29 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
     }, [props])
 
     const handleSubmit = (values) => {
-        console.log("dodano produkt");
-        addNewShoe(values);
+        console.log("shoe edit");
+        editShoe(values);
         history.push('/shoes')
         
     }
 
     return (
         <div>
-            <h3>Add Shoe</h3>
+            <h3>Edit Shoe</h3>
             <Formik
                 initialValues={{
-                    name: '',
-                    family: '',
-                    boost: false,
+                    _id: shoe._id,
+                    name: shoe.name,
+                    family: shoe.family,
+                    boost: shoe.boost,
                     colorway: [],
-                    stock: 0,
-                    description:'',
-                    region: [],
-                    pictureUrl: '',
-                    auctions: [],
-                    releaseDate: ''
+                    stock: shoe.stock,
+                    description:shoe.description,
+                    region: [...shoe.region],
+                    pictureUrl: shoe.pictureUrl,
+                    auctions: [...shoe.auctions],
+                    releaseDate: shoe.releaseDate,
+                    OLDcolorway: [...shoe.colorway]
                 }}
                 validationSchema={ShoeSchema}
                 onSubmit={(values) => handleSubmit(values)}
@@ -162,7 +164,7 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
                      <Field name="pictureUrl" placeholder="Picture URL"/>
                      {touched.pictureUrl && errors.pictureUrl && <div>{errors.pictureUrl}</div>}
                      <button type="submit">
-                         Zatwierdz
+                         Confirm
                      </button>
                     </Form>
                  )}
@@ -172,17 +174,17 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     return {
         colorways: state.colorways.colorways,
-        shoes: state.shoes.shoes
+        shoe: state.shoes.shoes.find(x=> x._id === props.match.params.id)
     }
 };
 
 const mapDispatchToProps = {
-    addNewShoe,
+    editShoe,
     getColorwaysList
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoeForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoeEditForm));

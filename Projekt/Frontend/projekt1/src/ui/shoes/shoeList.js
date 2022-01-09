@@ -37,7 +37,8 @@ const ShoeList = ({ shoes, XgetShoesList, loading, DeleteShoe } ,props) => {
                         </div>
                         <div className="shoeSideInfo">
                         <div>
-                            {c.name}
+                        <Link to={`shoes/${c._id}`}>{c.name}</Link>
+                            
                         </div>
                         <div>
                             {c.family}
@@ -46,6 +47,12 @@ const ShoeList = ({ shoes, XgetShoesList, loading, DeleteShoe } ,props) => {
                             <button onClick={() => 
                                 handleClick(c._id)}>Delete</button>
                         </div>
+                        <Link to={`/shoes/${c._id}/edit`}>
+                            <button type="button">
+                                Edit
+                            </button>
+                        </Link>
+
                         </div>
                         
                         

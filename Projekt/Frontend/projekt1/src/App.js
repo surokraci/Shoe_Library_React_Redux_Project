@@ -10,6 +10,8 @@ import {
 import ColorForm from './ui/colorways/colorForm';
 import ShoeList from './ui/shoes/shoeList';
 import ShoeForm from './ui/shoes/shoeForm';
+import ShoeDetail from './ui/shoes/shoeDetail';
+import ShoeEditForm from './ui/shoes/shoeEditForm';
 
 const axios = require('axios').default;
 
@@ -42,6 +44,12 @@ function App() {
           {/* <Route exact path="/actors/:id">
             <ActorDetail />
           </Route> */}
+          <Route path="/shoes/:id/edit">
+            <ShoeEditForm/>
+          </Route>
+          <Route path="/shoes/:id">
+            <ShoeDetail/>
+          </Route>
           <Route path="/shoesForm">
             <ShoeForm/>
           </Route>

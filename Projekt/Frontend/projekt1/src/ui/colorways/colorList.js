@@ -10,6 +10,7 @@ const ColorwayList = ({ colorways, getColorwaysList, loading, DeleteColorway } ,
         if(colorways.length === 0){
             getColorwaysList()
         }
+        console.log(colorways);
         
     }, []);
 
@@ -34,7 +35,12 @@ const ColorwayList = ({ colorways, getColorwaysList, loading, DeleteColorway } ,
                             {c.name}
                         </div>
                         <div>
-                            {c.shoes.map(x=>x.name)}
+                            {c.shoes.map(x=>{return(
+                                <div>
+                                    <Link to={`shoes/${x._id}`}>{x.name}</Link>
+                                </div>
+                                
+                            )})}
                         </div>
                         <div>
                             <button onClick={() => 

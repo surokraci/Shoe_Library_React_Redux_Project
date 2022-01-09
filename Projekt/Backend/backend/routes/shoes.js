@@ -8,7 +8,8 @@ const Shoe = require('../models/Shoe');
 
 
 router.get('/', async (req, res) => {
-  Shoe.find(function(error, shoeX){
+  Shoe.find()
+  .exec(function(error, shoeX){
     if(error){
       return res.send(error)
     }
@@ -56,9 +57,16 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     const id = req.params.id;
+    const oldShoe = await Shoe.findById(id, function(error, shoeY){
+      if(error){
+        return res.send(error)
+      }
+      return shoeY
+    })
     const updateShoe = await Shoe.findByIdAndUpdate(
       {_id: id},
-      { ...req.body}
+      { ...req.body},
+      {new: true}
     )
     const editShoe = await Shoe.findById(id, function(error, shoeX){
       if(error){
@@ -66,11 +74,12 @@ router.put('/:id', async (req, res) => {
       }
       return shoeX
     })
-    for(const colorwayX of editShoe.colorway){
+    for(const colorwayX of oldShoe.colorway){
       const res =await Colorway.findByIdAndUpdate(colorwayX, {$pull:{shoes:id}},{new: true},function(error, respo){
         if(error){
           return res.send(error)
         }
+        console.log(respo)
       })
     }
     for(const colorwayX of editShoe.colorway){

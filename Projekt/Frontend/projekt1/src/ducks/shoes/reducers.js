@@ -18,6 +18,9 @@ const ShoeReducer = (state = initState, action) => {
             return {...state, shoes: [...state.shoes, action.payload]}
         case types.SHOE_DELETE:
             return {...state, shoes: state.shoes.filter(el=>el._id !== action.payload)}
+        case types.ADD_AUCTION_TO_SHOE:
+            console.log(action.payload);
+            return {...state, shoes: state.shoes.map(function(el){return el._id === action.payload.itemid ? {...el, auctions: [...el.auctions, action.payload._id]}:{...el}})}
         default:
             return state;
     }

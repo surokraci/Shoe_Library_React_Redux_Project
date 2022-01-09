@@ -56,12 +56,12 @@ body .shoeContainer .shoeSide {
 }
 
 body .shoeContainer .shoeSide .shoeSideInfo {
-  border: thin solid black;
+  
   margin-left: 0;
 }
 
 body .shoeContainer .shoeSide .shoeImageInfo {
-  border: thin solid black;
+  
   margin-right: 0;
   padding-right: 0px;
 }
