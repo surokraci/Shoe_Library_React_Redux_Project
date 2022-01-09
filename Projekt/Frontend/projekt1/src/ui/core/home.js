@@ -2,16 +2,11 @@ import { useEffect } from "react";
 import { XgetShoesList } from "../../ducks/shoes/operations";
 import { getColorwaysList } from "../../ducks/colorways/operations";
 import { connect } from "react-redux";
+import { getShopsList } from "../../ducks/stores/operations";
+import { getAuctionsList } from "../../ducks/auctions/operations";
 
-const Home = ({shoes, colorways, XgetShoesList, getColorwaysList}, props) =>{
-    useEffect(() => {
-        if(shoes.length === 0 && colorways.length == 0){
-            XgetShoesList()
-            getColorwaysList()
-
-        }
-        
-    }, []);
+const Home = ({shoes, colorways, XgetShoesList, getColorwaysList, getAuctionsList, getShopsList}, props) =>{
+    
     return(
         <div className="homecore">
             <h1>Yeezy's all on your sofa</h1></div>

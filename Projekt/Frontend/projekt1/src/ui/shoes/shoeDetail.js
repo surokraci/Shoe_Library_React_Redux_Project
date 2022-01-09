@@ -7,12 +7,32 @@ import { XgetShoesList } from "../../ducks/shoes/operations";
 
 
 
-const ShoeDetail = ({colorways, shoe, XgetShoesList, history},props)=>{
+const ShoeDetail = ({colorways, shoe, XgetShoesList, history, shops, auctions},props)=>{
+    if(shoe == undefined){
+        history.push('/shoes')
+    }
     const cwObjects = []
     for(const x of shoe.colorway){
         for(const y of colorways){
             if(x===y._id){
                 cwObjects.push(y)
+            }
+        }
+    }
+    const auctObjects = []
+    for(const z of shoe.auctions){
+        for(const z1 of auctions){
+            if(z===z1._id){
+                auctObjects.push(z1)
+            }
+        }
+    }
+
+    const storesObjects = []
+    for(const m of auctObjects){
+        for(const m1 of shops){
+            if(m.sellerid===m1._id){
+                storesObjects.push(m1)
             }
         }
     }
@@ -57,6 +77,17 @@ const ShoeDetail = ({colorways, shoe, XgetShoesList, history},props)=>{
                 
                 </div>
                 </div>
+                <div>Awailable in {storesObjects.length} {storesObjects.length !== 1 ? <span>stores</span> : <span>store</span>}:</div>
+                <div>
+                    {storesObjects.map(c =>{
+                        return (
+                            <div key={c._id}>
+                        
+                            <div>
+                                {c.seller}
+                            </div>
+                        </div>)})}
+                </div>
             
                 </div>
             
@@ -69,7 +100,9 @@ const ShoeDetail = ({colorways, shoe, XgetShoesList, history},props)=>{
 
 const mapStateToProps = (state, props) => ({
     shoe: state.shoes.shoes.find(x=> x._id === props.match.params.id),
-    colorways: state.colorways.colorways
+    colorways: state.colorways.colorways,
+    auctions: state.auctions.auctions,
+    shops: state.shops.shops
 });
 const mapDispatchToProps = {
     XgetShoesList
