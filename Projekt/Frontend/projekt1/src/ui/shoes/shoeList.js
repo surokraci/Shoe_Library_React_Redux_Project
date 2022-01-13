@@ -12,46 +12,29 @@ const ShoeList = ({ shoes, loading, DeleteShoe } ,props) => {
         DeleteShoe(values);
         
     }
-    useEffect(()=>setChangex(shoes),[shoes])
-
     
-    const [copyShoesX, setChangex] = useState([])
     const [sortMethod, setSortMethod] = useState("none")
 
     const ShoesToMap = () =>{
         let shoes_copy = [...shoes]
-        if(sortMethod === "asc"){
+        if(sortMethod === "StockDesc"){
             shoes_copy = shoes.sort((a,b)=> a.stock !== b.stock ? a.stock > b.stock ? -1 : 1 : 0)
-        }else if(sortMethod === "desc"){
+        }else if(sortMethod === "StockAsc"){
             shoes_copy = shoes.sort((a,b)=>a.stock !== b.stock ? a.stock < b.stock ? -1 : 1 : 0)
+        }else if(sortMethod === "DateDesc"){
+            shoes_copy = shoes.sort((a,b)=> a.releaseDate !== b.releaseDate ? a.releaseDate > b.releaseDate ? -1 : 1 : 0)
+        }else if(sortMethod === "DateAsc"){
+            shoes_copy = shoes.sort((a,b)=>a.releaseDate !== b.releaseDate ? a.releaseDate < b.releaseDate ? -1 : 1 : 0)
+        }else if(sortMethod === "AlDesc"){
+            shoes_copy = shoes.sort((a,b)=> a.name !== b.name ? a.name > b.name ? -1 : 1 : 0)
+        }else if(sortMethod === "AlAsc"){
+            shoes_copy = shoes.sort((a,b)=>a.name !== b.name ? a.name < b.name ? -1 : 1 : 0)
         }else if(sortMethod === "none")
             shoes_copy = shoes.sort((a,b)=> a._id !== b._id ? a._id > b._id ? -1 : 1 : 0)
         return shoes_copy
     }
 
-    const handleChange = (e)=>{
-        switch(e){
-            default:
-            case "asc":
-                console.log("asc");
-                setChangex(shoes.sort((a,b)=>
-                a.stock !== b.stock ? a.stock > b.stock ? -1 : 1 : 0))
-                break;
-            case "desc":
-                console.log("desc");
-                setChangex(shoes.sort((a,b)=>
-                a.stock !== b.stock ? a.stock < b.stock ? -1 : 1 : 0))
-                break
-            case "none":
-                setChangex(shoes)
-                break
-            
-        }
-    }
     
-
-
-
 
     return (
         <div>
@@ -60,8 +43,12 @@ const ShoeList = ({ shoes, loading, DeleteShoe } ,props) => {
                 <div>
                     <select onChange={(e)=>{setSortMethod(e.target.value)}}>
                         <option value='none'>Recently added</option>
-                        <option value='asc'>Sort by date asc</option>
-                        <option value='desc'>Sort by date desc</option>
+                        <option value='StockAsc'>Stock Lowest</option>
+                        <option value='StockDesc'>Stock Highest</option>
+                        <option value='DateDesc'>Release date: newest</option>
+                        <option value='DateAsc'>Release date: oldest</option>
+                        <option value='AlAsc'>Alphabetically</option>
+                        <option value='AlDesc'>Alphabetically reverse</option>
                     </select>
                 </div>
 
