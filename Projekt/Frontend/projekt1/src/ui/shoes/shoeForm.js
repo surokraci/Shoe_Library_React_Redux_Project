@@ -74,7 +74,7 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
                      <Field name="name" placeholder="Shoe Name"/>
                      {touched.name && errors.name && <div>{errors.name}</div>}
                      <Field as="select" name="family" placeholder="Shoe Family">
-                     <option selected disabled value=''> Select Family </option>  
+                     <option defaultValue disabled value=''> Select Family </option>  
                         <option value="350">350</option>
                         <option value="450">450</option>
                         <option value="500">500</option>
@@ -101,7 +101,7 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
                         <Field  name="colorway[0]" as="select">
                         <option disabled selected value=''> Pick Main Colorway </option>  
                         {colorways.map(color => 
-                            <option value={color._id}>
+                            <option key ={color._id} value={color._id}>
                                 {`${color.name}`}
                             </option>
                         )}
@@ -115,7 +115,7 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
                         <Field  name="colorway[1]" as="select">
                         <option disabled selected value=''> Pick Second Colorway </option>  
                         {colorways.map(color => 
-                            <option value={color._id}>
+                            <option key ={color._id} value={color._id}>
                                 {`${color.name}`}
                             </option>
                         )}
@@ -128,7 +128,7 @@ const ShoeForm = ({ history, addNewShoe, colorways, getColorwaysList },props) =>
                         <Field  name="colorway[2]" as="select">
                         <option disabled selected value=''> Pick Accent Color </option>  
                         {colorways.map(color => 
-                            <option value={color._id}>
+                            <option key ={color._id} value={color._id}>
                                 {`${color.name}`}
                             </option>
                         )}

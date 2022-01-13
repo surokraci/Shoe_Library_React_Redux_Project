@@ -6,13 +6,6 @@ import { Link } from "react-router-dom";
 
 
 const ShopsList = ({ shops, DeleteShop, getShopsList, loading } ,props) => {
-    useEffect(() => {
-        console.log(shops);
-        if(shops.length === 0){
-            getShopsList()
-        }
-        
-    }, []);
 
 
     const handleClick = (values) => {

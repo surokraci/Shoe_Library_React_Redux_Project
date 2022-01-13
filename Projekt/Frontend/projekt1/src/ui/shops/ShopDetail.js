@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getShopsList } from "../../ducks/stores/operations";
+import { DeleteAuction } from "../../ducks/auctions/operations";
 
 
 
 
-const ShopDetail = ({shop,shoes, auctions, getShopsList},props)=>{
-    
+const ShopDetail = ({shop,shoes, auctions, DeleteAuction},props)=>{
     
     const auctObjects = []
     if(shop){
@@ -20,7 +20,11 @@ const ShopDetail = ({shop,shoes, auctions, getShopsList},props)=>{
             }
         }
     }
-    
+    const handleClick = (values) => {
+        console.log("auction deleted");
+        DeleteAuction(values);
+        
+    }
 
     
    
@@ -37,12 +41,29 @@ const ShopDetail = ({shop,shoes, auctions, getShopsList},props)=>{
                 <h2>Auctions:</h2>
                 <div>
                     {auctObjects.map(c =>{
-                        const properShoe = shoes.find(el=> el._id === c.itemid)
                         return (
+                            <div key={c._id}>
+                                
+                                <Link to={`/shoes/${shoes.find(el=> el._id === c.itemid)._id}`}>{shoes.find(el=> el._id === c.itemid).name}</Link>
+                                
                             <div>
-                                {properShoe.name}
+                                {c.sizes.map(x=>{
+                                    return(
+                                        <span key={x}>{x} </span>
+                                    )
+                                })}
+                            </div>
+                            <div>
+                                Price: {c.price}$
+                            </div>
+                            <div>
+                            <button onClick={() => 
+                                handleClick(c._id)}>Delete</button>
+                            </div>
                             
-                        </div>)})}
+                        </div>
+                        )
+                    })}
                 </div>
                 <div>
                 <Link to={`shops/${shop._id}/auctionForm`}>
@@ -72,7 +93,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = {
-   getShopsList
+   DeleteAuction
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShopDetail));

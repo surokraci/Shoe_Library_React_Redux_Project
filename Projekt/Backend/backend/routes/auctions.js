@@ -40,15 +40,9 @@ router.delete('/:id', async (req, res) => {
     return auctX})
   const resShoe = await Shoe.findByIdAndUpdate(deletedAuct.itemid, {$pull:{auctions:id}})
   const resSell = await Seller.findByIdAndUpdate(deletedAuct.sellerid, {$pull:{auctions:id}})
-  Auction.deleteOne({ _id: id }, function (err, auction) {
+  Auction.findByIdAndDelete({ _id: id }, function (err, auction) {
     if (err) return res.status(400).send(err);
-    if (auction.deletedCount > 0) {
-      return res.send({
-        deletedId: id,
-      });
-    } else {
-      return res.status(404).send(err);
-    }
+    return res.send(auction);
   });
 
 });

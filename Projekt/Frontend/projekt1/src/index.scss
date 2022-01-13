@@ -11,6 +11,13 @@ body {
   text-decoration: none;
   margin-left: 15%;
 
+  .imageInfoDetail2{
+    img{
+      width: 350px;
+      
+    }
+  }
+
   .homecore{
     font-size: 400%
   }
@@ -26,6 +33,7 @@ body {
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
   }
+  
 
   .shoeContainer{
     margin: 20px;

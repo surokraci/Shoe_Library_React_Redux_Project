@@ -48,15 +48,18 @@ const ShoeDetail = ({colorways, shoe, XgetShoesList, history, shops, auctions},p
             <h2>{shoe.name}</h2>
 
             <div>
-                <img src={shoe.pictureUrl} alt="nothing" />
+                <div className='imageInfoDetail2'>
+                    <img  src={shoe.pictureUrl} alt="nothing" />
+                </div>
+                
                 <p>Release Date: {shoe.releaseDate}</p>
                 <p>Stock: {shoe.stock}</p>
                 <p>{shoe.description}</p>
                 <div>Colorways:</div>
                 <div>
-                    {cwObjects.map(c =>{
+                    {cwObjects.map(function(c,i){
                         return (
-                            <div key={c._id}>
+                            <div key={i}>
                         
                             <div className='colorName' style={{color: c.code}}>
                                 {c.name}
@@ -67,7 +70,7 @@ const ShoeDetail = ({colorways, shoe, XgetShoesList, history, shops, auctions},p
                 <div>Regions:</div>
                 <div>
                             {shoe.region.map(x=>{return(
-                                <div>{x}</div>
+                                <div key={x}>{x}</div>
                             )})}
                         </div>
                 
@@ -75,9 +78,9 @@ const ShoeDetail = ({colorways, shoe, XgetShoesList, history, shops, auctions},p
                 </div>
                 <div>Awailable in {storesObjects.length} {storesObjects.length !== 1 ? <span>stores</span> : <span>store</span>}:</div>
                 <div>
-                    {storesObjects.map(c =>{
+                    {storesObjects.map(function(c,i){
                         return (
-                            <div key={c._id}>
+                            <div key={i}>
                         
                             <div>
                                 {c.seller}
@@ -104,6 +107,7 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatchToProps = {
     XgetShoesList
+
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShoeDetail));

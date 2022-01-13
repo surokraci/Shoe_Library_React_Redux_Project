@@ -6,13 +6,7 @@ import { Link } from "react-router-dom";
 
 
 const ColorwayList = ({ colorways, getColorwaysList, loading, DeleteColorway } ,props) => {
-    useEffect(() => {
-        if(colorways.length === 0){
-            getColorwaysList()
-        }
-        console.log(colorways);
-        
-    }, []);
+    
 
     const handleClick = (values) => {
         console.log("colorway deleted");
@@ -36,7 +30,7 @@ const ColorwayList = ({ colorways, getColorwaysList, loading, DeleteColorway } ,
                         </div>
                         <div>
                             {c.shoes.map(x=>{return(
-                                <div>
+                                <div key={x._id}>
                                     <Link to={`shoes/${x._id}`}>{x.name}</Link>
                                 </div>
                                 

@@ -33,3 +33,13 @@ export const AddAuctionToShoe = (auction) => ({
     type: types.ADD_AUCTION_TO_SHOE,
     payload: auction
 })
+
+export const DeleteAuctionFromShoe = (auction) =>({
+    type: types.REMOVE_AUCTION_FROM_SHOE,
+    payload: auction
+})
+
+export const DeleteAuctionFromShop = (auction) =>({
+    type: types.REMOVE_AUCTION_FROM_SHOP,
+    payload: auction
+})
