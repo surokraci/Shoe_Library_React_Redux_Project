@@ -10,6 +10,7 @@ import colorwayReducer from './ducks/colorways/reducers';
 import ShoeReducer from './ducks/shoes/reducers';
 import ShopReducer from './ducks/stores/reducers';
 import AuctionReducer from './ducks/auctions/reducers';
+import { Suspense } from 'react';
 
 const store = createStore(
   combineReducers({
@@ -24,7 +25,9 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    <Suspense fallback={<div>Ładowanie...</div>}>
       <App />
+      </Suspense>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

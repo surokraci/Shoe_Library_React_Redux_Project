@@ -20,7 +20,7 @@ const ShopReducer = (state = initState, action) => {
             return {...state, shops: state.shops.filter(el=>el._id !== action.payload)}
         case types.ADD_AUCTION_TO_SHOP:
             console.log(action.payload);
-            return {...state, shops: state.shops.map(function(el){return el._id === action.payload.seller ? {...el, auctions: [...el.auctions, action.payload._id]}:{...el}})}
+            return {...state, shops: state.shops.map(function(el){return el._id === action.payload.sellerid ? {...el, auctions: [...el.auctions, action.payload._id]}:{...el}})}
         default:
             return state;
     }

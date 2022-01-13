@@ -19,6 +19,9 @@ import { getAuctionsList } from './ducks/auctions/operations';
 import { getShopsList } from './ducks/stores/operations';
 import ShopsList from "./ui/shops/ShopList";
 import { connect } from "react-redux";
+import ShopDetail from "./ui/shops/ShopDetail";
+import ShopForm from "./ui/shops/ShopForm";
+import AuctionForm from "./ui/shops/AuctionForm";
 
 const axios = require('axios').default;
 
@@ -62,6 +65,15 @@ function App({XgetShoesList, getColorwaysList, getAuctionsList, getShopsList}) {
           {/* <Route exact path="/actors/:id">
             <ActorDetail />
           </Route> */}
+          <Route path="/shops/shops/:id/auctionForm">
+            <AuctionForm/>
+          </Route>
+          <Route path="/shopsForm">
+            <ShopForm/>
+          </Route>
+          <Route path="/shops/:id">
+            <ShopDetail/>
+          </Route>
           <Route path="/shops">
             <ShopsList/>
           </Route>

@@ -32,7 +32,7 @@ const ShopsList = ({ shops, DeleteShop, getShopsList, loading } ,props) => {
                     return (
                     <div key={c._id}>
                         <div>
-                            {c.seller}
+                        <Link to={`shops/${c._id}`}>{c.seller}</Link>
                         </div>
                         <div>
                             <img src={c.pictureUrl} alt="nothing" />
@@ -44,13 +44,13 @@ const ShopsList = ({ shops, DeleteShop, getShopsList, loading } ,props) => {
 
                     </div>)})
             }
-            {/* <div>
-                <Link to="/shoesForm">
+            <div>
+                <Link to="/shopsForm">
                     <button type="button">
-                        Add new colorway
+                        Add new shop
                     </button>
                 </Link>
-            </div> */}
+            </div>
 
 
         </div>
